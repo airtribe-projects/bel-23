@@ -2,10 +2,12 @@ const express = require('express');
 
 const app = express();
 
-// a
 
+app.get('/', (req, res) => {
+    res.send("Hello World!");
+})
 
-console.log("XYZ")
+// console.log("XYZ")
 
 app.listen(3000, (err, data) => {
     if (err) {
