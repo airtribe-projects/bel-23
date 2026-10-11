@@ -208,3 +208,150 @@ B. Deeply nested callbacks that reduce readability and control
 C. Using `Promise.all` with many APIs  
 D. Calling one synchronous function many times  
 
+
+## Question 11
+In callback hell, what is meant by inversion of control?
+
+A. Main function fully controls all timing  
+B. Called async functions control when next steps run  
+C. Event loop gets disabled  
+D. Functions become synchronous  
+
+(B)
+
+
+## Question 12
+Which Promise state is valid?
+
+A. WAITING  
+B. BLOCKED  
+C. FULFILLED  
+D. EXECUTED  
+
+(C)
+
+
+
+
+## Question 13
+What does a Promise represent?
+
+A. A guaranteed immediate value  
+B. A value that may be available now, later, or never  
+C. A callback that always runs twice  
+D. A synchronous operation wrapper only  
+
+(B)
+
+
+## Question 14
+What does `.then()` handle?
+
+A. Rejected promise values only  
+B. Resolved (fulfilled) promise values  
+C. Syntax errors only  
+D. Event loop scheduling only  
+
+(B)
+
+## Question 15
+What is true about multiple `resolve()` calls inside the same Promise executor?
+
+A. All resolve values are emitted  
+B. The last resolve wins  
+C. Only the first settlement is used   
+D. Promise becomes pending again  
+
+(C)
+
+## Question 16
+What does `Promise.all([...])` return immediately?
+
+A. An array of final values  
+B. A single Promise  
+C. A callback function  
+D. The first fulfilled value  
+
+
+(B)
+
+## Question 17
+`Promise.all` behavior when one Promise rejects:
+
+A. Ignores rejection and continues  
+B. Resolves with partial success values  
+C. Rejects immediately (fail-fast)  
+D. Converts rejection to fulfillment  
+
+(C)
+
+## Question 18
+What does `Promise.allSettled()` provide?
+
+A. Only fulfilled values  
+B. First settled value only  
+C. Status/result for all input promises  
+D. Only rejected reasons  
+
+(C)
+
+## Question 19
+What does `Promise.any()` resolve with?
+
+A. First settled promise (fulfilled or rejected)  
+B. First fulfilled promise  
+C. Array of all fulfilled values  
+D. Last fulfilled promise  
+
+(B)
+
+## Question 20
+What is correct about `async`/`await`?
+
+A. `async` functions always return a Promise  
+B. `await` can only be used in non-async functions  
+C. `await` turns JavaScript into multi-threaded execution  
+D. `await` blocks the entire Node.js thread  
+
+(A)
+
+## Question 21
+Inside an `async` function, what does `await promise` return when the promise is fulfilled?
+
+A. The Promise object itself  
+B. The fulfilled value  
+C. A callback function  
+D. `undefined` always  
+
+(B)
+
+## Question 22
+What is the recommended way to handle errors with `async`/`await`?
+
+A. `switch/case` around `await`  
+B. Nested callbacks only  
+C. `try/catch` blocks  
+D. `setTimeout` retries by default  
+
+(C)
+
+## Question 23
+Which statement about sequential `await` calls is correct?
+
+A. They run in parallel automatically  
+B. They run one after another in written order  
+C. They become synchronous and block Node.js thread  
+D. They are invalid in JavaScript  
+
+(B)
+
+
+## Question 24
+If tasks are independent and you want concurrency, what is better than awaiting each one sequentially?
+
+A. Wrapping each task in `console.log`  
+B. Using `Promise.all([...])`  
+C. Replacing all awaits with callbacks  
+D. Using `Promise.race` for all cases  
+
+(B)
