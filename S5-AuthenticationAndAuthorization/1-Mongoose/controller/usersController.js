@@ -30,6 +30,14 @@ const loginUser = async (email, password) => {
     if (!isSamePassword) {
         throw new Error("Invalid Password");
     }
+    
+
+    
+    // Create a Userkey and then send to user (UserKey) --> Store it in browser
+    // Store same key to the database
+    // 1. Query the DB to validate if the key is valid, key --> 
+    // 2. Need list of permissions for this user
+
 
     return {status: "ok", user: {id: dbUser.id}};
 }
