@@ -31,15 +31,22 @@ const getDb = () => db;
 
 // 1. Login - Vulnerable to "always true" attack
 const login = (username, password) => {
+    
+    //Input Validation 
+    if (!username || !password || typeof username !== 'string' || typeof password !== 'string') {
+        throw new Error("Incompatible types")
+    }
+    
+    // Parametrized query
     return new Promise((resolve, reject) => {
         const query = `
             SELECT id, username, is_admin, email 
             FROM users 
-            WHERE username = '${username}' 
-            AND password = '${password}'
+            WHERE username = ? 
+            AND password = ?
         `;
 
-        db.all(query, (err, user) => {
+        db.all(query, [username, password], (err, user) => {
             if (err) return reject(err);
             if (!user || user.length === 0) return resolve(null);
             resolve(user);
@@ -51,10 +58,13 @@ const login = (username, password) => {
 const registerUser = (username, password, email) => {
     return new Promise((resolve, reject) => {
         const id = Math.round(Math.random() * 1000);
-        const query = `INSERT INTO users (id, username, password, email, is_admin) VALUES (${id}, '${username}', '${password}', '${email}', 0)`;
+        // const query = `INSERT INTO users (id, username, password, email, is_admin) VALUES (${id}, '${username}', '${password}', '${email}', 0)`;
+        
+        const query = `INSERT INTO users (id, username, password, email, is_admin) VALUES (${id}, ?, ?, ?, 0)`;
         const query2 = `SELECT id, username, email, is_admin FROM users`;
 
-        db.exec(query, (err, results) => {
+        // db.run in place of db.exec. It reduces the error radius as it just executes one query
+        db.run(query, [username, password, email], (err, results) => {
             if (err) return reject(err);
 
             db.all(query2, (err, users) => {
@@ -67,14 +77,15 @@ const registerUser = (username, password, email) => {
 
 // 3. User Profile - Vulnerable to data exfiltration (UNION attack)
 const getProfile = (username) => {
+    
     return new Promise((resolve, reject) => {
         const query = `
             SELECT username, email 
             FROM users 
-            WHERE username = '${username}'
+            WHERE username = ?
         `;
 
-        db.all(query, (err, user) => {
+        db.all(query, [username], (err, user) => {
             if (err) return reject(err);
             if (!user || user.length === 0) return resolve(null);
             resolve(user);
