@@ -28,7 +28,7 @@
         <div id="messageBox">null</div>
 
         <script>
-            const socket = new WebSocket('ws://localhost:8001');
+            const socket = new WebSocket('wss://localhost:8001');
 
             socket.onopen = () => {
                 socket.send('Hello from client!');
