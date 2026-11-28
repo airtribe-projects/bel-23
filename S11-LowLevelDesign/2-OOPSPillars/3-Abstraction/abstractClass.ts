@@ -38,8 +38,6 @@ class ICar extends AbVehicle {
     }
 }
 
-
-
 /*
 1. Can we instantiate an abstract class? No
 2. Can an interface have implementation? No
@@ -49,5 +47,4 @@ class ICar extends AbVehicle {
 6. Can an interface extend another interface? Yes
 7. Can an abstract class extend another abstract class? Yes
 8. Can an interface extend an abstract class? No
-
-
+*/
